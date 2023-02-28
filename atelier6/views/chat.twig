@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script src="/socket.io/socket.io.js" ></script>
+
+    </head>
+    <body>
+
+
+    <label> MSG :</label>
+    <input id="message" type="text">
+    <input onclick="send()" type="submit">
+
+
+        <script>
+
+        const socket = io.connect();
+        socket.on("msg",(data) => {
+          console.log(data);
+            p = document.createElement("h2")
+            p.innerText = (data)
+            document.body.append(p)
+        })
+
+        function send(){
+            let message = document.getElementById("message");
+
+            socket.emit("msg", message.value)
+        }
+
+        </script>
+
+
+    </body>
+
+
+</html>
